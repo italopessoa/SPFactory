@@ -80,7 +80,7 @@ namespace SPFactory.Core.Head
         #region Constructors
 
         /// <summary>
-        /// Empty constructor
+        /// Default constructor
         /// </summary>
         public Header()
         {

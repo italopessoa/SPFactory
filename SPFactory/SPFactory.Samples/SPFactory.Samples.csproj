@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DD03BEC9-E4D0-40CA-9B35-067BA44E9724}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{CF25A693-4F5E-4634-AAE1-C0D0E538FF91}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SPFactory.Core</RootNamespace>
-    <AssemblyName>SPFactory</AssemblyName>
+    <RootNamespace>SPFactory.Samples</RootNamespace>
+    <AssemblyName>SPFactory.Samples</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -20,10 +21,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SPFactory.XML</DocumentationFile>
-    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,27 +32,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NPOI">
-      <HintPath>NPOI\NPOI.dll</HintPath>
-    </Reference>
     <Reference Include="NPOI.HSSF">
-      <HintPath>NPOI\NPOI.HSSF.dll</HintPath>
+      <HintPath>..\SPFactory.Core\NPOI\NPOI.HSSF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Content\ChildSheet.cs" />
-    <Compile Include="Content\RowStyle.cs" />
-    <Compile Include="Content\Spreadsheet.cs" />
-    <Compile Include="Factory\ConditionalFormattingTemplate.cs" />
-    <Compile Include="Factory\PropertyCell.cs" />
-    <Compile Include="Factory\WorkbookManager.cs" />
-    <Compile Include="Head\Header.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Head\TableHeader.cs" />
-    <Compile Include="Util\SheetUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SPFactory.Core\SPFactory.Core.csproj">
+      <Project>{dd03bec9-e4d0-40ca-9b35-067ba44e9724}</Project>
+      <Name>SPFactory.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

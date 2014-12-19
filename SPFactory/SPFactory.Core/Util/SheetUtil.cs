@@ -29,11 +29,9 @@ namespace SPFactory.Core.Util
     /// </summary>
     public static class SheetUtil
     {
-        /// <summary>
-        /// Number of cells to span
-        /// </summary>
-        public static int DEFAULT_TITLE_SPAN_SIZE = 10;
-        
+
+        #region Private Members
+
         /// <summary>
         /// First cell location
         /// </summary>
@@ -41,12 +39,25 @@ namespace SPFactory.Core.Util
         private static int tableHeaderRows = 0;
         private static int tableHeaderRowsAux = 0;
         private static int _tableHeaderCells = 0;
-        
+
+        #endregion
+
+        #region Public Members
+
+        /// <summary>
+        /// Number of cells to span
+        /// </summary>
+        public static int DEFAULT_TITLE_SPAN_SIZE = 10;
+
         //temporario, a biblioteca padrao nao possui um valor para Datetime
         /// <summary>
         /// Datetime cell type identifier
         /// </summary>
         public const int CELL_TYPE_DATETIME = 99;
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Identify the cell's value type.
@@ -141,6 +152,21 @@ namespace SPFactory.Core.Util
             return _tableHeaderCells;
         }
 
+        //TODO: melhorar essa verificação, uma célula pode não ter um tip definido. se for bool sempre terá um valor. Linha vazia não contém células
+        /// <summary>
+        /// Extension method to verify if a row is empty
+        /// </summary>
+        /// <param name="row">Spreasheet row</param>
+        /// <returns>True if is empty false otherwise.</returns>
+        public static bool IsEmpty(this HSSFRow row)
+        {
+            return row.FirstCellNum < 0;
+        }
+
+        #endregion
+
+        #region Private Methods
+        
         /// <summary>
         /// Number of cells of Table Header.
         /// </summary>
@@ -161,16 +187,7 @@ namespace SPFactory.Core.Util
             }
         }
 
-        //TODO: melhorar essa verificação, uma célula pode não ter um tip definido. se for bool sempre terá um valor. Linha vazia não contém células
-        /// <summary>
-        /// Extension method to verify if a row is empty
-        /// </summary>
-        /// <param name="row">Spreasheet row</param>
-        /// <returns>True if is empty false otherwise.</returns>
-        public static bool IsEmpty(this HSSFRow row)
-        {
-            return row.FirstCellNum < 0;
-        }
+        #endregion
     }
 }
 

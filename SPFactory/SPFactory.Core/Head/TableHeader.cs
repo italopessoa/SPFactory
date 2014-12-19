@@ -76,6 +76,9 @@ namespace SPFactory.Core.Head
 
         #region Constructors
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public TableHeader()
         {
 

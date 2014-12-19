@@ -17,6 +17,7 @@
  */
 
 using NPOI.HSSF.UserModel;
+using SPFactory.Core.Factory;
 using SPFactory.Core.Head;
 using SPFactory.Core.Util;
 using System;
@@ -38,8 +39,9 @@ namespace SPFactory.Core.Content
         private string[] _properties;
         private IList<Spreadsheet> _spreadsheetList;
         private int _firstCell = 0;
-        private NPOI.HSSF.UserModel.HSSFCellStyle _spanTitleStyle;
-
+        private HSSFCellStyle _spanTitleStyle;
+        private ChildSheet _childSheet;
+        
         #endregion
 
         #region Public Properties
@@ -147,7 +149,10 @@ namespace SPFactory.Core.Content
         #endregion
 
         #region Constructors
-
+        
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Spreadsheet()
         {
 
@@ -155,44 +160,48 @@ namespace SPFactory.Core.Content
 
         #endregion
 
-        //public virtual RowStyle RowStyle { get; set; }
+        #region ainda não testado
 
-        //private IDictionary<string, List<ConditionalFormattingTemplate>> _conditionalFormatDictionary;
+        public virtual RowStyle RowStyle { get; set; }
 
-        //public virtual IDictionary<string, List<ConditionalFormattingTemplate>> ConditionalFormatList
-        //{
-        //    get { return _conditionalFormatDictionary; }
-        //}
+        private IDictionary<string, List<ConditionalFormattingTemplate>> _conditionalFormatDictionary;
 
-        //public virtual void AddConditionalFormatting(string property, ConditionalFormattingTemplate format)
-        //{
-        //    if (_conditionalFormatDictionary == null)
-        //    {
-        //        _conditionalFormatDictionary = new Dictionary<string, List<ConditionalFormattingTemplate>>();
-        //    }
+        public virtual IDictionary<string, List<ConditionalFormattingTemplate>> ConditionalFormatList
+        {
+            get { return _conditionalFormatDictionary; }
+        }
 
-        //    if (_conditionalFormatDictionary.Keys.Contains(property))
-        //    {
-        //        _conditionalFormatDictionary[property].Add(format);
-        //        _conditionalFormatDictionary[property].Sort(delegate(ConditionalFormattingTemplate a, ConditionalFormattingTemplate b)
-        //        {
-        //            return a.Priority.CompareTo(b.Priority);
-        //        });
-        //    }
-        //    else
-        //    {
-        //        _conditionalFormatDictionary[property] = new List<ConditionalFormattingTemplate>();
-        //        _conditionalFormatDictionary[property].Add(format);
-        //    }
-        //}
+        public virtual void AddConditionalFormatting(string property, ConditionalFormattingTemplate format)
+        {
+            if (_conditionalFormatDictionary == null)
+            {
+                _conditionalFormatDictionary = new Dictionary<string, List<ConditionalFormattingTemplate>>();
+            }
+
+            if (_conditionalFormatDictionary.Keys.Contains(property))
+            {
+                _conditionalFormatDictionary[property].Add(format);
+                _conditionalFormatDictionary[property].Sort(delegate(ConditionalFormattingTemplate a, ConditionalFormattingTemplate b)
+                {
+                    return a.Priority.CompareTo(b.Priority);
+                });
+            }
+            else
+            {
+                _conditionalFormatDictionary[property] = new List<ConditionalFormattingTemplate>();
+                _conditionalFormatDictionary[property].Add(format);
+            }
+        }
+
+        #endregion
 
         //private SpreadsheetFactory _childSheet;
         //private ChildSheet _childSheet;
 
-        //public ChildSheet ChildSheet
-        //{
-        //    get { return _childSheet; }
-        //    set { _childSheet = value; }
-        //}
+        public ChildSheet ChildSheet
+        {
+            get { return _childSheet; }
+            set { _childSheet = value; }
+        }
     }
 }
